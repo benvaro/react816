@@ -1,0 +1,19 @@
+.selected {
+    box-shadow:
+        0 1px 2px 4px rgba(0, 0, 0, 0.05),
+        0 2px 4px 4px rgba(0, 0, 0, 0.05),
+        0 4px 8px 4px rgba(0, 0, 0, 0.05),
+        0 8px 16px 4px rgba(0, 0, 0, 0.05)
+}
+
+.disabled {
+    filter: opacity(0.3);
+}
+
+i {
+    font-size: 40px;
+}
+
+i:hover{
+    color: rgb(100, 14, 14);
+}

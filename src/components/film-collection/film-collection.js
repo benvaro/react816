@@ -1,27 +1,23 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 import Card from '../card'
 
 import './film-collection.css'
 
-let arr = [
-    { name: "Avatar", genre: "Fantastic", year: "2011" },
-    { name: "It", genre: "Horror", year: "2016" },
-    { name: "It", genre: "Horror", year: "2016" },
-    { name: "It", genre: "Horror", year: "2016" },
-    { name: "It", genre: "Horror", year: "2016" },
-    { name: "It", genre: "Horror", year: "2016" },
-    { name: "Time", genre: "Fantastic", year: "2012" }
-]
+export default class FilmCollection extends Component {
 
-const FilmCollection = () => {
-    return (
-        <div className="row">
-            {arr.map(item => {
-                return <Card film={item} />
-            })}
-        </div>
-    )
+
+
+    render() {
+        const { onDeleteFilm, arr } = this.props;
+        return (
+            <div className="row">
+                {arr.map(item => {
+                    return <Card key={item.id}
+                        film={item}
+                        onDeleteFilm={onDeleteFilm} />
+                })}
+            </div>
+        )
+    }
 }
-
-export default FilmCollection;
