@@ -52,7 +52,12 @@ export default class App extends Component {
             genre: "Fantastic",
             year: "2012"
         }
-        ]
+        ],
+        search: ""
+    }
+
+    search = (pattern) => {
+        this.setState({ search: pattern })
     }
 
     deleteFilm = (id) => {
@@ -62,20 +67,38 @@ export default class App extends Component {
         let after = arr.slice(index + 1);
 
         // let result = before.concat(after);
-        this.setState({ arr: [...before, ...after] })
+        this.setState({ arr: [...before, ...after] }) // spread operator
 
     }
+    max = 1000;
+    addFilm = (obj) => { // obj = {film}
+        const { arr } = this.state;
 
-    addFilm = (obj) => {
-        console.log(obj);
+        let newObj = {
+            id: this.max++,
+            name: obj.name,
+            genre: obj.genre,
+            year: obj.year
+        };
+        this.setState({ arr: [...arr, newObj] });
+    }
+
+    edit = (obj) => {
+        console.log(obj)
     }
 
     render() {
+        const { arr, search } = this.state;
+        let filtered = [];
+        if (search === '')
+            filtered = arr;
+        else
+            filtered = arr.filter(item => item.name.toLowerCase().includes(search.toLowerCase()));
         return (
             <div className="container">
                 <Header text="FilmCollection" color="olive" />
-                <SearchBar />
-                <FilmCollection onDeleteFilm={this.deleteFilm} arr={this.state.arr} />
+                <SearchBar onSearch={this.search} />
+                <FilmCollection onDeleteFilm={this.deleteFilm} arr={filtered} onEdit={this.edit} />
                 <AddFilm onAddFilm={this.addFilm} />
             </div>
         )

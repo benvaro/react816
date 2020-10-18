@@ -1,6 +1,7 @@
 import React from 'react'
 
 import './card.css'
+import EditModal from '../edit-modal'
 
 export default class Card extends React.Component {
 
@@ -24,7 +25,7 @@ export default class Card extends React.Component {
         const { id, name, genre, year } = this.props.film;
         const src = `https://robohash.org/${name}.png?set=set4&size=100x100`;
         const { selected, disabled } = this.state;
-        let className = "col-12 col-md-6 col-lg-3";
+        let className = "col-12 col-md-6 col-lg-3 mb-4";
         if (selected)
             className += ' selected';
         if (disabled)
@@ -44,6 +45,7 @@ export default class Card extends React.Component {
                         <p className="card-text"><b>Genre: </b>{genre}</p>
                         <p className="card-text"><b>Year: </b>{year}</p>
                     </div>
+                    <EditModal film={this.props.film} onEdit={this.props.onEdit} />
                 </div>
             </>)
     }
